@@ -1,0 +1,738 @@
+@media screen and (orientation:portrait){
+   /* Portrait styles here */
+    body {
+        font-family: 'Cabin Condensed' !important;
+        font-size: 30px !important;
+        line-height: 30px !important;
+        background-color:#808080;
+        text-align: center;
+        text-shadow: 0.5px 0.5px #ACAAC4;
+    }
+    td{
+        height: 70px;    
+        }
+    .imgtd{
+         height: 170px;   
+        }
+    #gameDetailLandscape{
+        display: none;
+        }
+    #chatButton{
+        width: 30%; 
+        margin-bottom: 20px;
+        margin-top: 20px;
+        border-radius: 15%;
+        border: solid;
+        border-color:#B0C4DE; 
+        }
+    header{
+        margin-bottom: 20px;
+    }
+    #title{
+        border-bottom: solid;
+        border-bottom-color: black; 
+    }
+    #congresslogo #title h1{
+        font-size: 50px;
+    }
+    #chart_div{
+            width:100%;
+        }
+    table{
+        text-align: center;
+    }
+    table tr:nth-child(odd) {
+      background-color: #E6E6FA;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #B0C4DE;
+    }
+    thead {
+        font-weight: bold;
+    }
+    h1{
+        text-align: center;
+    }
+    #titleschedule{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        background-image: linear-gradient(to bottom right,#B4EDF2,#B4BDF2);
+        border-radius: 5%;
+        border: solid;
+        border-color:#B0C4DE; 
+    }
+    #filterBlock{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        background-image: linear-gradient(to bottom right,#B4EDF2,#B4BDF2);
+        border-radius: 5%;
+        border: solid;
+        border-color:#B0C4DE; 
+        font-weight: 200;
+    }
+    .infoButton{
+        border-radius: 40%;
+        width: 40px;
+        background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+        border: 2px;
+        font-weight: normal:
+    }
+    label{
+        background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+        border: 2px;
+        font-weight: normal:
+    }
+
+    button a:link{
+        color: white;
+    }
+    button a:visited{
+        color: white;
+    }
+    #search{
+        margin-bottom: 15%;
+    }
+    input[type=radio] {
+        display:block;
+        border: 20px;
+        width: 90%;
+        height: 90%;
+    }
+    #blinkingText{
+        margin: 5%;
+        font-size: 20px;
+    }
+    #buttonText{
+        margin: auto;
+    }
+    #additionalInfo{
+        font-size: 20px;
+        text-align: justify;
+        margin-bottom: 5%;
+        margin-top: 20px;
+    }
+    .comebackButton{
+        margin-bottom: 20%;
+        margin-top: 10%; 
+        font-weight: normal;
+    }
+    #chart_div{
+         margin-bottom: 20px;
+        margin-top: 20px; 
+        }
+    #chart_div_2{
+         margin-bottom: 20px;
+        margin-top: 20px; 
+        }
+    .accordion{
+           width: 100%;
+        }
+    .accordion:after {
+      content: '↓ See More ↓';
+      font-size: 20px;
+      color: white;
+      text-align: center;
+    }
+    .active:after {
+      content: "↑ See Less ↑"; 
+        }
+    #accordion_div{
+         margin-bottom: 20px;   
+        }
+    panel{
+        display: none; 
+    }
+ #tableLogin td{
+    background-color: #E6E6FA;
+    padding: 5px;
+}
+    #tableLogin{
+    border: solid;
+    border-bottom-width: 20px;
+    margin-top: 20px;
+    margin: 20%;
+}
+    #tableSignIn{
+    border: solid;
+    border-bottom-width: 20px;
+    margin-top: 20px;
+    margin: 20%;
+}
+ #tableSignIn td{
+    background-color: #E6E6FA;
+    padding: 5px;
+}
+    #chat{
+    border: solid; 
+    display: inline-block;
+}
+    body{
+     background-image: url(../images/nysl_logo.png), url(../images/background.png);
+    background-size: 150px;
+    background-blend-mode: overlay;
+}
+#passwordLogIn{
+    margin-bottom: 20px; 
+}
+#passwordSignIn{
+    margin-bottom: 20px; 
+}
+#googleLogInButton{
+        width: 100%;
+        background-color: skyblue; 
+    }
+nav{
+    background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+    border-radius: 5%;
+    margin-bottom: 50px;
+}
+li{
+    display: block;
+}
+a:visited{
+    color: darkblue;
+}
+a:link{
+    color:darkblue;
+}
+    navlink{
+        border: none;
+    }
+#bodyText{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width:100%;
+    }
+}
+
+/* LANDSCAPE STYLE: */
+
+
+@media screen and (orientation:landscape) {
+   /* Landscape styles here */
+    body {
+        font-family: 'Cabin Condensed' !important;
+        font-size: 20px !important;
+        line-height: 30px !important;
+        background-color:#808080;
+        text-align: center;
+        text-shadow: 0.5px 0.5px #ACAAC4;
+    }
+    header{
+        margin-bottom: 20px;
+    }
+    td{
+            height: 60px;
+    }
+    .imgtd{
+         height: 180px;   
+        }
+    #title{
+        border-bottom: solid;
+        border-bottom-color: black; 
+    }
+
+    #congresslogo #title h1{
+        font-size: 50px;
+    }
+    table{
+        text-align: center;
+    }
+    table tr:nth-child(odd) {
+      background-color: #E6E6FA;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #B0C4DE;
+    }
+    thead {
+        font-weight: bold;
+    }
+    h1{
+        text-align: center;
+    }
+    #chatButton{
+        width: 30%; 
+        margin-bottom: 20px;
+        margin-top: 20px;
+        border-radius: 15%;
+        border: solid;
+        border-color:#B0C4DE; 
+        }
+    #titleschedule{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        background-image: linear-gradient(to bottom right,#B4EDF2,#B4BDF2);
+        border: solid;
+        border-color:#B0C4DE; 
+    }
+    #filterBlock{
+        margin-bottom: 20px;
+        margin-top: 20px;
+        background-image: linear-gradient(to bottom right,#B4EDF2,#B4BDF2);
+        border-radius: 5%;
+        border: solid;
+        border-color:#B0C4DE; 
+        font-weight: 200;
+    }
+    .infoButton{
+        border-radius: 40%;
+        width: 40px;
+        background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+        border: 2px;
+        font-weight: normal;
+    }
+    label{
+        background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+        border: 2px;
+        font-weight: normal:
+    }
+    .panel{
+         display: none;
+         overflow: hidden;
+        }
+    button a:link{
+        color: white;
+    }
+    button a:visited{
+        color: white;
+    }
+    #search{
+        margin-bottom: 15%;
+    }
+    input[type=radio] {
+        display:block;
+        border: 20px;
+        width: 90%;
+        height: 90%;
+    }
+    #blinkingText{
+        margin: 5%;
+        font-size: 20px;
+    }
+    #buttonText{
+        margin: auto;
+    }
+    #additionalInfo{
+        text-align: justify;
+        margin-bottom: 5%;
+        margin-top: 20px;
+    }
+    .comebackButton{
+        margin-bottom: 10%;
+        font-weight: normal;
+        margin-top: 20%;
+    }
+    #chart_div{
+         margin-bottom: 20px;
+        margin-top: 20px; 
+        }
+    #chart_div_2{
+         margin-bottom: 20px;
+        margin-top: 20px; 
+        }
+    .accordion{
+           width: 100%;
+        }
+    .accordion:after {
+      content: '↓ See More ↓'; /* Unicode character for "plus" sign (+) */
+      font-size: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .active:after {
+      content: "↑ See Less ↑"; /* Unicode character for "minus" sign (-) */
+    }
+    #accordion_div{
+         margin-bottom: 20px;   
+        }
+    panel{
+            display: none;
+        }
+    #login-page{
+        margin-bottom: 30px;
+    }
+    #tableLogin td{
+    background-color: #E6E6FA;
+    padding: 5px;
+}
+    #tableLogin{
+    border: solid;
+    border-bottom-width: 20px;
+    margin-top: 20px;
+}
+    #tableSignIn{
+    border: solid;
+    border-bottom-width: 20px;
+    margin-top: 20px;
+}
+     #tableSignIn td{
+        background-color: #E6E6FA;
+        padding: 5px;
+    }
+        #chat{
+        border: solid; 
+    }
+    body{
+         background-image: url(../images/nysl_logo.png), url(../images/background.png);
+        background-size: 150px;
+        background-blend-mode: overlay;
+    }
+    #passwordLogIn{
+        margin-bottom: 20px; 
+    }
+    #passwordSignIn{
+        margin-bottom: 20px; 
+    }
+    nav{
+        background-image: linear-gradient(to bottom right,#1E90FF,#6A5ACD);
+        border-radius: 5%;
+        height: 70px;
+        margin-bottom: 40px;
+    }
+    .nav-item{
+        font-size: 20px;
+        color: white;
+    }
+    a:visited{
+        color:darkblue;
+    }
+    a:link{
+        color:darkblue;
+    }
+    .navlink{
+        border:none;
+        margin-right: 15px;
+    }
+    #bodyText{
+        font-family: "Times New Roman";
+        margin-right: 15px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width:100%;
+        height: 0%;
+    }
+}
+
+/* CHAT PAGE'S STYLE */ 
+
+
+.mdl-menu a {
+    text-decoration: none;
+}
+.content {
+    max-width: 1024px;
+}
+.mdl-card {
+    display: block;
+}
+h3 {
+    background: url('firebase-logo.png') no-repeat;
+    background-size: 40px;
+    padding-left: 50px;
+    background-position-y: -2px;
+}
+.mdl-textfield {
+    width: 100%;
+}
+/* Fixes an MDL bug where the header does not scroll on small devices */
+.mdl-layout__container .mdl-layout--fixed-header .mdl-layout__content {
+    overflow-y: visible;
+    overflow-x: visible;
+    overflow: visible;
+}
+/* Overrides MDL colors */
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active::after,
+.header .mdl-textfield__label:after {
+    background-color: #FFCA28;
+}
+.mdl-snackbar__action {
+    color: #FFCA28;
+}
+.mdl-textfield__label:after {
+    background-color: #0288D1;
+}
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+    color: #0288D1;
+}
+
+/* Header */
+
+.logo {
+    font-family: 'Amaranth', sans-serif;
+}
+.logo .material-icons {
+    top: 4px;
+    font-size: 32px;
+    margin-right: -2px;
+    position: relative;
+}
+.header .mdl-layout__header-row {
+    max-width: 1024px;
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    margin: auto;
+    position: relative;
+}
+@media screen and (max-width: 840px) {
+    .header .mdl-layout__header-row.titlebar {
+        height: 56px;
+    }
+    .titlebar h3 {
+        font-size: 24px;
+    }
+    .titlebar h3 .material-icons {
+        top: 2.5px;
+        font-size: 23px;
+    }
+}
+@media screen and (max-width: 479px) {
+    .mdl-grid {
+        padding: 0;
+    }
+    .mdl-card {
+        font-size: 14px;
+    }
+}
+
+/* Signed-in user */
+
+.avatar {
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    background-size: 32px 32px;
+    border-radius: 32px;
+    border: 2px white solid;
+    margin-right: 10px;
+    background-image: url('./silhouette.jpg');
+}
+.username {
+    display: inline-block;
+    line-height: 38px;
+    vertical-align: top;
+    width: calc(100% - 46px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+#sign-in-button {
+    margin-left: 10px;
+    color: inherit;
+}
+#sign-in-email-button {
+    margin-left: 10px;
+    color: inherit;
+    font-size: 15px;
+}
+#come-back-chat {
+    margin-left: 10px;
+    color: inherit;
+    font-size: 15px;
+}
+
+#sign-in-button {
+    margin-left: 10px;
+    color: inherit;
+    font-size: 15px;
+}
+
+#sign-out-button {
+    margin: 10px;
+    color: inherit;
+}
+.mdl-button .material-icons {
+    margin-top: -2px;
+}
+.mdl-button.mdl-button--icon .material-icons,
+.mdl-button.mdl-button--fab .material-icons {
+    margin-top: 0;
+}
+
+/* Navigation Bar */
+
+.header .mdl-tab {
+    padding-left: 23px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    position: relative;
+    margin: auto;
+    max-width: 1024px;
+}
+@media screen and (max-width: 609px) {
+    .header .mdl-tab {
+        width: 100%;
+    }
+}
+.header .tab {
+    padding: 0;
+    max-width: none;
+}
+#add {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+    z-index: 998;
+}
+@media screen and (max-width: 840px) {
+    #add {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 998;
+        top: auto;
+    }
+}
+#sign-out-button {
+    right: 0;
+    position: absolute;
+}
+
+/* Drawer */
+
+.mdl-layout__drawer-button {
+    display: none;
+}
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link.is-active,
+.is-active .mdl-menu__item {
+    color: black;
+    background-color: #EBEBEB;
+}
+.mdl-layout__drawer {
+    border-right-width: 0;
+}
+.mdl-navigation__link .material-icons, .mdl-menu__item .material-icons {
+    position: relative;
+    margin-top: -2px;
+    margin-right: 10px;
+}
+.mdl-menu__item .material-icons {
+    top: 7px;
+}
+@media screen and (max-width: 479px) {
+    .mdl-layout__drawer-button {
+        display: block;
+        top: 3px;
+    }
+}
+
+/* New Post Page */
+
+#page-add {
+    display: block;
+    text-align: center;
+}
+#page-add .mdl-cell {
+    width: auto;
+    min-width: 300px;
+}
+#newPictureContainer {
+    margin: 0;
+    max-width: 100%;
+    max-height: 400px;
+}
+@media screen and (max-width: 479px) {
+    .mdl-snackbar__action {
+        margin-right: 60px;
+    }
+}
+.comments-container .username {
+    width: auto;
+}
+.comments-container .comment{
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 10px;
+    color: grey;
+    line-height: 25px;
+}
+.comments-container .username {
+    line-height: 25px;
+}
+
+/* Post */
+
+.post .mdl-card {
+    height: 100%;
+    top: 0;
+    left: 0;
+    min-height: 0;
+}
+.post .header {
+    padding: 10px;
+    width: calc(100% - 100px);
+    display: inline-block;
+}
+.post .star-count {
+    color: #444;
+    padding: 0 10px 0 5px;
+    font-weight: bold;
+    display: inline-block;
+    top: -10px;
+    position: relative;
+}
+.post .comments-container {
+    padding: 15px 10px 0 10px;
+}
+.post .text {
+    padding: 0 10px;
+    color: grey;
+}
+.post .comments-container .text {
+    margin-left: 5px;
+    color: #444;
+    transition: all 0.2s;
+}
+.post .add-comment{
+    flex-grow: 1;
+    padding: 0 10px;
+    margin-bottom: -10px;
+}
+.post .add-comment.mdl-textfield {
+    width: 100%;
+}
+.post .star {
+    position: absolute;
+    top: 10px;
+    right: 0;
+}
+.post .star .material-icons {
+    font-size: 35px;
+    color: #ffcb0c;
+    cursor: pointer;
+}
+.post .star .material-icons:HOVER {
+    opacity: 0.6;
+}
+.post .star .starred {
+    display: none;
+}
+
+/* Splash Page */
+
+#page-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/nysl_logo.png), url(../images/background.png);
+    background-blend-mode: lighten; 
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    flex-direction: column;
+}
+
+ #chatPage{
+        display: none;
+        height: 100%;
+    }

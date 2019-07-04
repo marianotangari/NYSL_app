@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset= "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title> NYSL Schedule App </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" sizes="196x196" href="../images/nysl_logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles/nysl_app.css">
+    <!-- Google Charts-->
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-deep_purple.min.css" />
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+    
+    <body>
+        <header> 
+                <div id="weather"><a class="weatherwidget-io" href="https://forecast7.com/en/41d88n87d63/chicago/" data-label_1="CHICAGO" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-days="5" data-theme="sky" >CHICAGO WEATHER</a>
+                </div>
+        </header>
+        
+        <div class="container-fluid" id="app">
+            
+        <div class="row">
+            <div class="col-2">
+            <img src="images/nysl_logo.png" alt ="logo" height="50" width="50" id="logo" >
+            </div>
+            <div id="title" class="col-8"> <h2> NYSL </h2></div>
+            <div class="col-2 "><img src="images/nysl_logo.png" alt ="logo" height="50" width="50" id="logo2"></div>
+        </div>
+            
+        <div class="row" id="titleschedule">
+            <div class="col-12">
+             <h3>Game Schedule </h3></div>
+            </div>
+            
+        <div id="tablePositions" v-show="isTrue_6">
+            <table class="table table-bordered">
+                <tr><h2>Click in the team name to get info about perfomance.</h2></tr>
+                <tr class="row-12 headRow">
+                    <td>Team</td>
+                    <td>Pts</td>
+                    <td>W</td>
+                    <td>L</td>
+                    <td>D</td>
+                </tr>
+                <tr v-for="index in 6" :key="index">
+                    <td :id="index" type="button" class="labelChart" onclick="getDataChart(event)"> {{teams[index-1].name}}</td>
+                    <td>{{teams[index-1].pts}}</td>
+                    <td>{{teams[index-1].W}}</td>
+                    <td>{{teams[index-1].L}}</td>
+                    <td>{{teams[index-1].D}}</td>
+                </tr>
+            </table> 
+            
+<!-- Below, ugly charts! -->
+            
+            
+        <div class="row">
+                <div id="chart_div"></div></div>
+        <div class="row">
+                <div id="chart_div_2"></div></div>
+             <div class="row-12">
+                 <button type="button" class="button btn-info comebackButton infoButton" onclick="comeBack()">←</button></div>
+        </div>
+            
+        <div id="search" v-show="isTrue_3">
+            <div class="row">
+                <div class="col-12" id="filterBlock"><h3>Filter game by hour: </h3></div>
+                <div class="col-4 inputCol"><input type="radio" class="custom-radio" name="check1" value="nine" onclick="filterHour(event)">  9:30</div>
+                <div class="col-4 inputCol"><input class="custom-radio" type="radio" name="check1" value="thirdteen" onclick="filterHour(event)">  13:00</div>
+                <div class="col-4 inputCol"><input class="custom-radio" type="radio" name="check1" value="all" onclick="filterHour(event)" checked>All</div>
+            </div>
+            </div>
+            
+        <div class="row-12" id="blinkingText" v-show="isTrue_3"><label type="button" class="button btn-primary" onclick="getTablePosition()">CLICK HERE TO SEE THE TOURNAMENT'S POSITION TABLE!</label></div>
+            
+        
+            <!-- Here is the div element "Game Detail", which is displayed in portrait size-->
+            
+        <div v-show="isTrue_1_portrait" id="gameDetailPortrait">
+            <table class="table table-borderless"> 
+                <tr class="row"> 
+                    <td class="col-12"> {{current_match.teams}}</td></tr>
+                <tr class="row"> 
+                    <td class="col-12"> Date: {{current_match.date}}</td></tr>
+            <tr class="row"> 
+                <td class="col-12"> Time: {{current_match.time}}</td></tr>
+            <tr class="row"> 
+                <td class="col-12">Location: {{current_match.location}}</td></tr>
+            <tr class="row imgtd">
+                <td class="col-12" v-if="current_match.location == 'AJ Katzenmaier'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.6542461157305!2d-87.63124444950569!3d41.90029237911841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24+W+Walton+St%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478037631"  style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'Greenbay'">
+                    <iframe class="frame"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.6542461157305!2d-87.63124444950569!3d41.90029237911841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24+W+Walton+St%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478037631" style="border:0" allowfullscreen></iframe>
+                </td><td class="col-12 imgtd" v-if="current_match.location == 'Howard A Yeager'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.585683090361!2d-87.66511994950473!3d41.92326457911672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245+N+Southport+Ave%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478922711" style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'Marjorie P Hart'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.29191466318!2d-87.64809164950451!3d41.929578279116114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd30f2630e551%3A0x3e719e44a5cef714!2s2625+N+Orchard+St%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478966608" style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'North'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.3364882363308!2d-87.64836124950541!3d41.907124679117864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd33af13a8945%3A0xb6ad1ec2b6f379ba!2s1409+N+Ogden+Ave%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552479010116"  style="border:0" allowfullscreen></iframe></td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'South'">
+                    <iframe Class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.7479505298147!2d-87.65356074950489!3d41.91977677911686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd3196fb41dc7%3A0x970be7f7d6336df5!2s2101+N+Fremont+St%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552479049967" style="border:0" allowfullscreen></iframe></td>
+            </tr>
+            </table>
+            <button id="buttonChat2" onclick="getChatPage()">Messages</button>
+            <div id="additionalInfo">
+            <div class="row-12"><b>Facility Type</b>: Outdoor</div>
+                <div class="row-12"><b>Additional Information</b>: If deemed necessary by NYSL, games may be shortened or cancelled due to extreme weather conditions.</div>
+            <div class="row-12">Please direct all questions to: Michael Randall, League Coordinator.</div>
+            <div class="row-12"><b>Phone</b>: <a href="#">(630) 690-8132</a></div>
+                <div class="row-12"><b>Email:</b> <a href="mailto:michael.randall@chisoccer.org">michael.randall@chisoccer.org</a></div>
+            </div>
+            <div class="row-12"><button class="button btn-info comebackButton" onclick="comeBack()">←</button></div>
+            </div>
+            
+        <div class="row">
+        <div id="tablesHome" class="col-sm-6">
+        <table class="table table-stripped" id="table1" v-show="isTrue_2">
+            <thead>
+                <tr class="row">
+                    <td class="col-12 tableTitle">SEPTEMBER</td>
+                </tr>
+                <tr class="row headRow">
+                    <td class="col-4">Date</td>
+                    <td class="col-4">Match</td>
+                    <td class="col-4 blinking">+ Info</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row" v-for="index in 9" :key="index">
+                    <td class="col-4">{{matches[index-1].date}}</td>
+                    <td class="col-4">{{matches[index-1].teams}}</td>
+                    <td class="col-4"><button :id="index" class="button btn-primary infoButton" onclick="getInfo(id)">+</button></td>
+                </tr>
+            </tbody>
+        </table>
+            
+        
+        <label class="accordion" id="accordion_div" v-show="isTrue_accord"></label>
+        <div class="panel" id="panel_div">
+        <table class="table table-stripped " id="table2">
+            <thead>
+                <tr class="row">
+                    <td class="col-12 tableTitle">OCTOBER</td>
+                </tr>
+                <tr class="row headRow">
+                    <td class="col-4">Date</td>
+                    <td class="col-4">Match</td>
+                    <td class="col-4 blinking">+ Info</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row" v-for="index in 8" :key="index">
+                    <td class="col-4">{{matches[index+8].date}}</td>
+                    <td class="col-4">{{matches[index+8].teams}}</td>
+                    <td class="col-4"><button :id="index+9" type="button" class="button btn-info infoButton" onclick="getInfo(id)">+</button></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+            
+        <table class="table table-borderless" id="table3" v-show="isTrue_4">
+            <thead>
+                <tr class="row">
+                    <td class="col-12 tableTitle">Matches at 9:30 A.M.</td>
+                </tr>
+                <tr class="row headRow">
+                    <td class="col-4">Date</td>
+                    <td class="col-4">Match</td>
+                    <td class="col-4 blinking">+ Info</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row" v-for="index in matches.length" v-if="matches[index-1].time=='9:30 A.M.'">
+                    <td class="col-4">{{matches[index-1].date}}</td>
+                    <td class="col-4">{{matches[index-1].teams}}</td>
+                    <td class="col-4"><button :id="index" class="button btn-info infoButton" onclick="getInfo(id)">+</button></td>
+                </tr>
+            </tbody>
+        </table>
+            
+        <table class="table table-borderless" id="table4" v-show="isTrue_5">
+            <thead>
+                <tr class="row">
+                    <td class="col-12 tableTitle">Matches at 1:00 P.M.</td>
+                </tr>
+                <tr class="row headRow">
+                    <td class="col-4">Date</td>
+                    <td class="col-4">Match</td>
+                    <td class="col-4 blinking">+ Info</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row" v-for="index in matches.length" v-if="matches[index-1].time=='1:00 P.M.'">
+                    <td class="col-4">{{matches[index-1].date}}</td>
+                    <td class="col-4">{{matches[index-1].teams}}</td>
+                    <td class="col-4"><button :id="index" class="button btn-info infoButton" onclick="getInfo(id)">+</button></td>
+                </tr>
+            </tbody>
+        </table>
+            </div> 
+            
+            <!-- Here is the div element "Game Detail", which is displayed in landscape mode-->
+            
+            <div id="gameDetailLandscape" class="col-sm-6" v-show="isTrue_1_landscape">
+            <table class="table table-borderless"> 
+                <tr class="row"> 
+                    <td class="col-12"> {{current_match.teams}}</td></tr><tr class="row"> 
+                    <td class="col-12"> Date: {{current_match.date}}</td></tr>
+            <tr class="row"> 
+                <td class="col-12"> Time: {{current_match.time}}</td></tr>
+            <tr class="row"> 
+                <td class="col-12">Location: {{current_match.location}}</td></tr>
+            <tr class="row">
+                <td class="col-12 imgtd" v-if="current_match.location == 'AJ Katzenmaier'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.6542461157305!2d-87.63124444950569!3d41.90029237911841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24+W+Walton+St%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478037631"  style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'Greenbay'">
+                    <iframe class="frame"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.6542461157305!2d-87.63124444950569!3d41.90029237911841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd34e07f6bac3%3A0x68a82e5d59952c86!2s24+W+Walton+St%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478037631" style="border:0" allowfullscreen></iframe>
+                </td><td class="col-12 imgtd" v-if="current_match.location == 'Howard A Yeager'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.585683090361!2d-87.66511994950473!3d41.92326457911672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd2e37f9b8d2d%3A0x62ad8b907dd755d6!2s2245+N+Southport+Ave%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478922711" style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'Marjorie P Hart'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.29191466318!2d-87.64809164950451!3d41.929578279116114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd30f2630e551%3A0x3e719e44a5cef714!2s2625+N+Orchard+St%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552478966608" style="border:0" allowfullscreen></iframe>
+                </td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'North'">
+                    <iframe class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.3364882363308!2d-87.64836124950541!3d41.907124679117864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd33af13a8945%3A0xb6ad1ec2b6f379ba!2s1409+N+Ogden+Ave%2C+Chicago%2C+IL+60610%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552479010116"  style="border:0" allowfullscreen></iframe></td>
+                <td class="col-12 imgtd" v-if="current_match.location == 'South'">
+                    <iframe Class="frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2968.7479505298147!2d-87.65356074950489!3d41.91977677911686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fd3196fb41dc7%3A0x970be7f7d6336df5!2s2101+N+Fremont+St%2C+Chicago%2C+IL+60614%2C+EE.+UU.!5e0!3m2!1ses-419!2sar!4v1552479049967" style="border:0" allowfullscreen></iframe></td>
+            </tr>
+            </table>
+            
+            <button id= "buttonChat" onclick="getChatPage()" >Messages</button>
+            <div id="additionalInfo">
+            <div class="row-12"><b>Facility Type</b>: Outdoor</div>
+                <div class="row-12"><b>Additional Information</b>: If deemed necessary by NYSL, games may be shortened or cancelled due to extreme weather conditions.</div>
+            <div class="row-12">Please direct all questions to: Michael Randall, League Coordinator.</div>
+            <div class="row-12"><b>Phone</b>: <a href="#">(630) 690-8132</a></div>
+                <div class="row-12"><b>Email:</b> <a href="mailto:michael.randall@chisoccer.org">michael.randall@chisoccer.org</a></div>
+            </div>
+            </div>
+         </div>     
+        </div>
+        
+            <div id="chatPage">
+                
+                <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+                      <!-- Splash screen -->
+                      <section id="page-splash">
+                          <h3>NYSL Chat</h3>
+                          <div>
+                              <button id="sign-in-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign in with Google</button>
+                              <button id="sign-in-email-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect" onclick="getSignInDiv()"><i class="material-icons">person</i> Sign In with Email</button>
+                              <button id="sign-up-email-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect" onclick="getSignUpDiv()"> Sign Up</button>
+                              <button id="come-back-chat" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect" onclick="comeBack()"><i class="material-icons">arrow_back</i>Back to Home Screen</button>
+                          </div>
+                              
+                          <div class="mdl-card mdl-color--light-blue-600" id="SignUpDiv" style="margin-bottom: 20%;">
+                              <table class="table table-stripped">
+                                  <tr><td style="font-size: 15px;">E-mail: <input type="text" id="emailSignUp"></td></tr>
+                                  <tr><td style="font-size: 15px;">Password: <input type="password" id="passwordSignUp"></td></tr>
+                                  <tr><td><button id="sign-up-email" style="font-size: 15px;">Sign Up</button></td></tr>
+                                  <tr><td id="messageSignUp">ERROR: Email/Password invalid. Enter a new Email/Password.</td></tr>
+                              </table>
+                          </div>
+                          <div class="mdl-card mdl-color--light-blue-800" style="margin-bottom: 20%;" id="SignInDiv">
+                              <table class="table table-bordered">
+                                  <tr><td style="font-size: 15px;">E-mail: <input type="text" id="email"></td></tr>
+                                  <tr><td style="font-size: 15px;">Password: <input type="password" id="password"></td></tr>
+                                  <tr><td><button id="sign-in-email" style="font-size: 15px;">Sign In</button></td></tr>
+                                  <tr><td id="messageSignIn">ERROR: Email/Password invalid.</td></tr>
+                              </table>
+                          </div>
+                               <div class="row-12" id="gifSignIn">Loading...</div>
+                              
+                          
+                      </section>
+                        
+                      <!-- Header section containing logo and menu -->
+                      <table id="chatTitle"></table>
+                      <div class="header mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+
+                        <div class="mdl-layout__header-row titlebar">
+                          <h3 class="logo">NYSL Blog</h3>
+                          <button id="sign-out-button" class="mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect"><i class="material-icons">account_circle</i> Sign out</button>
+                        </div>
+
+                        <!-- Navigation Bar -->
+                        <div class="tab mdl-layout__header-row mdl-color--light-blue-600">
+                          <div class="mdl-tab">
+                            <div id="menu-recent" class="mdl-layout__tab is-active mdl-button mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">new_releases</i> Recent
+                            </div>
+                            <div id="menu-my-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">home</i> My posts
+                            </div>
+                            <div id="menu-my-top-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
+                              <i class="material-icons">trending_up</i> My top posts
+                            </div>
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
+                              <i class="material-icons">mode_edit</i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <main class="mdl-layout__content mdl-color--grey-100">
+
+                        <!-- Show the add post form -->
+                        <section class="mdl-grid content" id="add-post" style="display:none">
+                          <div class="mdl-cell mdl-cell--12-col mdl-grid">
+
+                              <!-- Card containing the inputs to add a new messages -->
+                              <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--8-col-tablet
+                                      mdl-cell--6-col-desktop">
+                                <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
+                                  <h2 class="mdl-card__title-text">New Post</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                                  <form id="message-form" action="#">
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="text" id="new-post-title">
+                                    </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <textarea class="mdl-textfield__input" rows="3" id="new-post-message"></textarea>
+                                    </div>
+                                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                      Add post
+                                    </button>
+                                  </form>
+                                </div>
+                            </div>
+                          </div>
+                        </section>
+
+                        <!-- Show a list of recent posts -->
+                        <section class="mdl-grid content" id="recent-posts-list" style="display:none">
+                          <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                          </div>
+                        </section>
+
+                        <!-- Show the list of user's posts -->
+                        <section class="mdl-grid content" id="user-posts-list" style="display:none">
+                          <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                          </div>
+                        </section>
+
+                        <!-- Show the list of top user's posts -->
+                        <section class="mdl-grid content" id="top-user-posts-list" style="display:none">
+                          <div class="posts-container mdl-cell mdl-cell--12-col mdl-grid">
+                          </div>
+                        </section>
+                      </main>
+                    <div class="row-12"><button type="button" class="button btn-info comebackButton infoButton" onclick="comeBack()">←</button>
+                    </div>
+            </div>
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+    <script src="js_files/game_info.js"></script>
+    <!-- Firebase Scripts-->
+    <script src="/__/firebase/5.9.3/firebase-app.js"></script>
+    <script src="/__/firebase/5.9.3/firebase-auth.js"></script>
+    <script src="/__/firebase/5.9.3/firebase-database.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    </body>
+</html>

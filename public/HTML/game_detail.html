@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset= "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> NYSL Schedule App </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/nysl_app.css">
+</head>
+    
+    <body>
+        <header> 
+            <div id="weather"><a class="weatherwidget-io" href="https://forecast7.com/en/41d88n87d63/chicago/" data-label_1="CHICAGO" data-label_2="WEATHER" data-font="Trebuchet MS" data-icons="Climacons Animated" data-days="5" data-theme="sky" >CHICAGO WEATHER</a>
+        </div>
+        </header>
+        <div class="container text-justify" id="app">
+            
+            <div class="row-12">
+                <h1>Team 1 vs. Team 2</h1><br></div>
+                <div class="row-12"><b>Time:</b> 9:30 A.M</div>
+                <div class="row-12"><b>Location:</b> AJ Katzenmaier</div>
+                <div class="row-12"><b>Date:</b> 9/01<br></div>
+            <div class="row-12">
+                <h1> Teams Info</h1><br>
+            </div>
+            <div class=row-12> <h3>Team 1</h3> </div>
+            <div class="row-12"><b>Coach</b>: Ricardo Tarambana</div>
+            <div class="row-12"> <b>Team 1</b>: Tournament Position</div>
+                <div class="row-12"><h3>Team 2</h3></div>
+                <div class="row-12"><b>Coach</b>: Vladimir Putin</div>
+                <div class="row-12"> <b>Team 2</b>: Tournament Position</div>
+             
+            <div><br><b>Facility Type</b>: Outdoor<br>
+            <b>Additional Information</b>: If deemed necessary by NYSL, games may be shortened or cancelled due to extreme weather conditions.<br>
+            Please direct all questions to: Michael Randall, League Coordinator<br>
+            </div>
+            <footer>
+                    <b>Phone</b>: <a href="#">(630) 690-8132<br></a>
+                <b>Email:</b> <a href="mailto:michael.randall@chisoccer.org">michael.randall@chisoccer.org</a>
+                <div class="col-12 text-center">
+                <button type="button" class="button btn-info" id="backButton"><a href="index.html">←</a></button>
+                    </div>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+        <script src="../js_files/game_info.js"></script>
+    </body>
+</html>
